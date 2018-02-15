@@ -1,1 +1,1 @@
-A docker image with SGX SDK and PSW installed. Note that Trusted Platform Service (which relies on ME) is not installed.
+A docker image (https://hub.docker.com/r/bl4ck5un/sgx-docker/) with SGX SDK and PSW installed. Note that Trusted Platform Service (which relies on ME) is not installed. If you do need ME support, alternatively you can refer to https://github.com/tozd/docker-sgx.
