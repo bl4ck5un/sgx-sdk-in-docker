@@ -10,7 +10,8 @@ RUN apt-get install -y build-essential automake autoconf \
     cmake \
     libssl-dev libcurl4-openssl-dev \
     libprotobuf-dev \
-    kmod linux-headers-$(uname -r)
+    kmod linux-headers-$(uname -r) \
+    wget
 
 RUN mkdir /root/sgx
 
