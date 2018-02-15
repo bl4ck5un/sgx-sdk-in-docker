@@ -5,8 +5,9 @@ ARG SGX_DRIVER_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-deskto
 ARG SGX_SDK_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-desktop/sgx_linux_x64_sdk_2.1.101.42529.bin
 ARG SGX_PSW_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-desktop/sgx_linux_x64_psw_2.1.101.42337.bin
 
-RUN apt-get update
-RUN apt-get install -y build-essential automake autoconf \
+RUN sed -ie 's/archive.ubuntu.com/mirrors.rit.edu/g' /etc/apt/sources.list
+RUN apt-get -qq update
+RUN apt-get -qq install -y build-essential automake autoconf \
     cmake \
     libssl-dev libcurl4-openssl-dev \
     libprotobuf-dev \
