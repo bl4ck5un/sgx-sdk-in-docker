@@ -1,11 +1,10 @@
 FROM ubuntu:16.04
 MAINTAINER Fan Zhang <bl4ck5unxx@gmail.com>
 
-ARG SGX_DRIVER_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-desktop/sgx_linux_x64_driver_1bf50be.bin
-ARG SGX_SDK_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-desktop/sgx_linux_x64_sdk_2.1.101.42529.bin
-ARG SGX_PSW_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-desktop/sgx_linux_x64_psw_2.1.101.42337.bin
+ARG SGX_DRIVER_URL=https://download.01.org/intel-sgx/linux-2.1.2/ubuntu64-desktop/sgx_linux_x64_driver_1bf506e.bin
+ARG SGX_PSW_URL=https://download.01.org/intel-sgx/linux-2.1.2/ubuntu64-desktop/sgx_linux_x64_psw_2.1.102.43402.bin
+ARG SGX_SDK_URL=https://download.01.org/intel-sgx/linux-2.1.2/ubuntu64-desktop/sgx_linux_x64_sdk_2.1.102.43402.bin
 
-RUN sed -ie 's/archive.ubuntu.com/mirrors.rit.edu/g' /etc/apt/sources.list
 RUN apt-get -qq update
 RUN apt-get -qq install -y build-essential automake autoconf \
     cmake \
