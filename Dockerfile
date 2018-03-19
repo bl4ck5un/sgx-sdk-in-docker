@@ -8,7 +8,7 @@ ARG SGX_SDK_URL=https://download.01.org/intel-sgx/linux-2.1.2/ubuntu64-desktop/s
 RUN apt-get -qq update
 RUN apt-get -qq install -y build-essential automake autoconf \
     cmake \
-    libssl-dev libcurl4-openssl-dev \
+    libssl-dev libcurl3-openssl-dev \
     libprotobuf-dev \
     kmod linux-headers-$(uname -r) \
     wget
