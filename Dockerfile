@@ -12,7 +12,6 @@ RUN apt-get -qq install -y build-essential automake autoconf \
     libprotobuf-dev \
     linux-headers-$(uname -r) \
     kmod \
-    supervisor \
     wget
 
 RUN mkdir /root/sgx
@@ -29,8 +28,3 @@ RUN wget -qO sgx_linux_driver.bin $SGX_DRIVER_URL && \
     ./sgx_linux_psw.bin && \
     echo -e 'no\n/opt/intel' | ./sgx_linux_sdk.bin && \
     echo 'source /opt/intel/sgxsdk/environment' >> /root/.bashrc
-
-RUN mkdir -p /var/supervisor/child
-COPY ./supervisord.conf /etc
-
-CMD ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
