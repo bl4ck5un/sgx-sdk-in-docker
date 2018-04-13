@@ -1,17 +1,14 @@
 FROM ubuntu:xenial
 MAINTAINER Fan Zhang <bl4ck5unxx@gmail.com>
 
-ARG SGX_DRIVER_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-desktop/sgx_linux_x64_driver_1bf50be.bin
-ARG SGX_SDK_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-desktop/sgx_linux_x64_sdk_2.1.101.42529.bin
-ARG SGX_PSW_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-desktop/sgx_linux_x64_psw_2.1.101.42337.bin
+ARG SGX_DRIVER_URL=https://download.01.org/intel-sgx/linux-2.1.2/ubuntu64-desktop/sgx_linux_x64_driver_1bf506e.bin
+ARG SGX_PSW_URL=https://download.01.org/intel-sgx/linux-2.1.2/ubuntu64-desktop/sgx_linux_x64_psw_2.1.102.43402.bin
+ARG SGX_SDK_URL=https://download.01.org/intel-sgx/linux-2.1.2/ubuntu64-desktop/sgx_linux_x64_sdk_2.1.102.43402.bin
 
-RUN apt-get update
-RUN apt-get install -y \
-    automake \
-    autoconf \
-    build-essential \
+RUN apt-get -qq update
+RUN apt-get -qq install -y build-essential automake autoconf \
     cmake \
-    libssl-dev libcurl4-openssl-dev \
+    libssl-dev libcurl3-openssl-dev \
     libprotobuf-dev \
     linux-headers-$(uname -r) \
     kmod \
