@@ -1,17 +1,21 @@
-FROM ubuntu:16.04
+FROM ubuntu:xenial
 MAINTAINER Fan Zhang <bl4ck5unxx@gmail.com>
 
 ARG SGX_DRIVER_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-desktop/sgx_linux_x64_driver_1bf50be.bin
 ARG SGX_SDK_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-desktop/sgx_linux_x64_sdk_2.1.101.42529.bin
 ARG SGX_PSW_URL=https://download.01.org/intel-sgx/linux-2.1.1/ubuntu64-desktop/sgx_linux_x64_psw_2.1.101.42337.bin
 
-RUN sed -ie 's/archive.ubuntu.com/mirrors.rit.edu/g' /etc/apt/sources.list
-RUN apt-get -qq update
-RUN apt-get -qq install -y build-essential automake autoconf \
+RUN apt-get update
+RUN apt-get install -y \
+    automake \
+    autoconf \
+    build-essential \
     cmake \
     libssl-dev libcurl4-openssl-dev \
     libprotobuf-dev \
-    kmod linux-headers-$(uname -r) \
+    linux-headers-$(uname -r) \
+    kmod \
+    supervisor \
     wget
 
 RUN mkdir /root/sgx
@@ -28,3 +32,8 @@ RUN wget -qO sgx_linux_driver.bin $SGX_DRIVER_URL && \
     ./sgx_linux_psw.bin && \
     echo -e 'no\n/opt/intel' | ./sgx_linux_sdk.bin && \
     echo 'source /opt/intel/sgxsdk/environment' >> /root/.bashrc
+
+RUN mkdir -p /var/supervisor/child
+COPY ./supervisord.conf /etc
+
+CMD ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
